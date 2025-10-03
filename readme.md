@@ -77,17 +77,21 @@ On the first node:
 sudo kubectl get nodes
 ```
 
-6. Installing kube-vip
+6. Installing kube-vip (As a Static Pod on **EVERY** node)
 
 First, copy the `kube-vip.yaml` file
 
 Next, paste it into this file:
 ```bash
+sudo mkdir -p /etc/rancher/k3s/server/manifests
 sudo vi /var/lib/rancher/k3s/server/manifests/kube-vip.yaml
 ```
 
-Don't forget to modify the IP address in the address field (line 78). You should
-be using the interface name of the interface you just renamed.
+**DO THIS ON EVERY FUCKING MACHINE**
+
+Don't forget to modify the IP address in the address field (Grep for "-name:
+address"). You should be using the interface name of the interface you just
+renamed.
 
 7. Adding tls certs
 
