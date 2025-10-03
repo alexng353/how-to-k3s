@@ -1,0 +1,33 @@
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph   # must match the operator’s namespace
+spec:
+  dataDirHostPath: /var/lib/rook
+  cephVersion:
+    image: quay.io/ceph/ceph:v18.2.2
+  mon:
+    count: 3
+    allowMultiplePerNode: false
+  mgr:
+    count: 2
+    allowMultiplePerNode: true
+  dashboard:
+    enabled: true
+  storage:
+    useAllNodes: true
+    useAllDevices: false
+    nodes:
+      - name: hudson
+        devices:
+          - name: "/dev/disk/by-id/nvme-CT2000P310SSD8_252050102238"
+      - name: jesse
+        devices:
+          - name: "/dev/disk/by-id/nvme-CT2000P310SSD8_25205010198F"
+      - name: martin
+        devices:
+          - name: "/dev/disk/by-id/nvme-CT2000P310SSD8_252050101853"
+    config:
+      osdsPerDevice: "1"
+    # deviceFilter: "^sd[a-z]" # regex against sata devices (we aren't using them)
