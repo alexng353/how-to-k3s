@@ -151,3 +151,7 @@ kubectl get nodes
 ```
 
 11. Moving forward, we can use the kubectl on the mac to interact with the cluster
+
+next steps: (I haven't done this shit yet)
+
+- setup 
